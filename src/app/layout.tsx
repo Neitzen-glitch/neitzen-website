@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     "AI",
     "Machine Learning",
     "Data Science",
+    "AIDA"
   ],
   authors: [{ name: "Neitzen" }],
 };

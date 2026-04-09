@@ -1,7 +1,7 @@
 "use client";
 
 import { supabase } from '@/app/utils/supabase/supabase';
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { 
@@ -72,29 +72,77 @@ export default function AidaProductPage() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeInOut" as const } }
   };
 
-  // Animated section component that flows entire content based on scroll direction
+  // Animated section component with staggered children entrance
   const ScrollFlowSection = ({ children, fromLeft = true }: { children: React.ReactNode, fromLeft?: boolean }) => {
     const ref = useRef(null);
-    const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+    const { scrollYProgress } = useScroll({ target: ref, offset: ["start center", "center start"] });
 
-    const x = useTransform(
-      scrollYProgress,
-      [0, 1],
-      scrollDirection === 'down' 
-        ? fromLeft ? [-60, 0] : [60, 0]
-        : fromLeft ? [0, 60] : [0, -60],
-      { clamp: false }
-    );
+    // Softer, gentler movement
+    const startX = fromLeft ? -30 : 30;
+    const endX = 0;
 
-    // Use direct transform instead of spring for immediate response
-    const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+    const x = useTransform(scrollYProgress, [0, 1], [startX, endX], { clamp: true });
+    const opacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0, 1, 1, 0]);
+
+    const containerVariants = {
+      hidden: { opacity: 0 },
+      visible: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.12,
+          delayChildren: 0.05,
+          duration: 0.5
+        }
+      },
+      exit: {
+        opacity: 0,
+        transition: { duration: 0.3 }
+      }
+    };
+
+    const childVariants = {
+      hidden: { 
+        opacity: 0, 
+        x: fromLeft ? -20 : 20 
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        transition: { 
+          duration: 0.5
+        }
+      },
+      exit: {
+        opacity: 0,
+        x: fromLeft ? 20 : -20,
+        transition: { duration: 0.3 }
+      }
+    };
+
+    // Handle both single elements and fragments
+    const childArray = React.Children.toArray(children);
 
     return (
       <motion.div
         ref={ref}
-        style={{ x, opacity, willChange: 'transform, opacity' }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        exit="exit"
+        viewport={{ once: false, amount: 0.3 }}
+        style={{ willChange: 'transform, opacity' }}
       >
-        {children}
+        {childArray.length > 1 ? (
+          childArray.map((child, index) => (
+            <motion.div key={index} variants={childVariants}>
+              {child}
+            </motion.div>
+          ))
+        ) : (
+          <motion.div variants={childVariants}>
+            {children}
+          </motion.div>
+        )}
       </motion.div>
     );
   };
@@ -242,7 +290,7 @@ export default function AidaProductPage() {
               </div>
             </ScrollFlowSection>
             <ScrollFlowSection fromLeft={false}>
-              <div className="order-1 md:order-2">
+              <>
                 <div className="flex items-center gap-3 mb-4 text-[#0067b8]">
                   <Globe size={24} />
                   <span className="font-mono text-xs uppercase tracking-widest">Digital Infrastructure</span>
@@ -272,14 +320,14 @@ export default function AidaProductPage() {
                 <div className="p-4 bg-emerald-500/5 border-l-2 border-emerald-500 text-xs italic text-emerald-200/80">
                   <strong>Collaboration:</strong> Feeds live traffic data directly into the BI engine for instant heatmapping and churn analysis.
                 </div>
-              </div>
+              </>
             </ScrollFlowSection>
           </div>
 
           {/* 02: OPERATIONS */}
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
             <ScrollFlowSection fromLeft={true}>
-              <div>
+              <>
                 <div className="flex items-center gap-3 mb-4 text-[#0067b8]">
                   <Settings size={24} />
                   <span className="font-mono text-xs uppercase tracking-widest">Core Operations</span>
@@ -309,12 +357,10 @@ export default function AidaProductPage() {
                 <div className="p-4 bg-purple-500/5 border-l-2 border-purple-500 text-xs italic text-purple-200/80">
                   <strong>Collaboration:</strong> Syncs customer behavior with the Marketing engine to trigger personalized automated campaigns.
                 </div>
-              </div>
+              </>
             </ScrollFlowSection>
             <ScrollFlowSection fromLeft={false}>
-              <div>
-                <FeatureGraphic src="/image2.svg" alt="AIDA Operations" />
-              </div>
+              <FeatureGraphic src="/image2.svg" alt="AIDA Operations" />
             </ScrollFlowSection>
           </div>
 
@@ -326,7 +372,7 @@ export default function AidaProductPage() {
               </div>
             </ScrollFlowSection>
             <ScrollFlowSection fromLeft={false}>
-              <div className="order-1 md:order-2">
+              <>
                 <div className="flex items-center gap-3 mb-4 text-[#0067b8]">
                   <Zap size={24} />
                   <span className="font-mono text-xs uppercase tracking-widest">Growth Engine</span>
@@ -356,14 +402,14 @@ export default function AidaProductPage() {
                 <div className="p-4 bg-blue-500/5 border-l-2 border-[#0067b8] text-xs italic text-blue-200/80">
                   <strong>Collaboration:</strong> Pulls product assets directly from the Site Engine to create consistent ads without human intervention.
                 </div>
-              </div>
+              </>
             </ScrollFlowSection>
           </div>
 
           {/* 04: BUSINESS INTELLIGENCE */}
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
             <ScrollFlowSection fromLeft={true}>
-              <div>
+              <>
                 <div className="flex items-center gap-3 mb-4 text-[#0067b8]">
                   <BarChart3 size={24} />
                   <span className="font-mono text-xs uppercase tracking-widest">Decision Matrix</span>
@@ -393,12 +439,10 @@ export default function AidaProductPage() {
                 <div className="p-4 bg-emerald-500/5 border-l-2 border-emerald-500 text-xs italic text-emerald-200/80">
                   <strong>Collaboration:</strong> Acts as the "Brain" that instructs the Growth engine to pivot strategies when conversion dips.
                 </div>
-              </div>
+              </>
             </ScrollFlowSection>
             <ScrollFlowSection fromLeft={false}>
-              <div>
-                <FeatureGraphic src="/image4.svg" alt="AIDA Intelligence" />
-              </div>
+              <FeatureGraphic src="/image4.svg" alt="AIDA Intelligence" />
             </ScrollFlowSection>
           </div>
         </section>

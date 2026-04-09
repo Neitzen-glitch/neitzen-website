@@ -7,12 +7,12 @@ export default function Home() {
     <div className="w-full bg-white">
       
       {/* HERO SECTION */}
-      <section className="relative w-full max-w-400 mx-auto px-0 md:px-10 mt-2">
-        <div className="relative w-full min-h-113 md:h-125 overflow-hidden rounded-sm flex items-center bg-gray-100">
+      <section className="relative w-full max-w-[1600px] mx-auto px-0 md:px-10 mt-2">
+        <div className="relative w-full min-h-[450px] md:h-[500px] overflow-hidden rounded-sm flex items-center bg-gray-100">
           
           {/* THE BACKGROUND IMAGE */}
           <Image
-            src="/bg1.jpg"
+            src="/bg1.png"
             alt="Neitzen AIDA OS Background"
             fill
             priority
@@ -51,13 +51,13 @@ export default function Home() {
       </section>
 
       {/* ICON QUICK LINKS */}
-      <section className="py-12 md:py-16 max-w-400 mx-auto px-6 md:px-10">
+      <section className="py-12 md:py-16 max-w-[1600px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 md:flex md:flex-wrap md:justify-center gap-8 md:gap-16">
           {[
-            { name: 'Generative Websites', color: 'bg-blue-600' },
-            { name: 'Ad Account Creation', color: 'bg-green-600' },
-            { name: 'Social Management', color: 'bg-orange-600' },
-            { name: 'SEO Optimization', color: 'bg-purple-600' }
+            { name: 'AIDA', color: 'bg-blue-600' },
+            { name: 'Neon AI', color: 'bg-green-600' },
+            { name: 'Data Bank', color: 'bg-orange-600' },
+            { name: 'Kree', color: 'bg-purple-600' }
           ].map((item, index) => (
             <div key={index} className="flex flex-col items-center gap-3 cursor-pointer group text-center">
               <div className="w-10 h-10 flex items-center justify-center transition-transform group-hover:-translate-y-1">
@@ -72,7 +72,7 @@ export default function Home() {
       </section>
 
       {/* PRODUCT CARDS GRID */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 px-6 md:px-10 max-w-400 mx-auto mb-20">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 px-6 md:px-10 max-w-[1600px] mx-auto mb-20">
         {[1, 2, 3, 4].map((item) => (
           <div key={item} className="flex flex-col group cursor-pointer">
             <div className="relative w-full h-48 mb-4 overflow-hidden rounded-sm bg-slate-100">

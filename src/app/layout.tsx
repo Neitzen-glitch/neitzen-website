@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, User, ChevronRight, Globe, Menu, X, LogOut } from 'lucide-react';
+import { User, Globe, Menu, X, LogOut } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { createClient } from '@/app/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
+import SearchBar from '@/components/SearchBar';
 import './globals.css';
 
 export default function RootLayout({
@@ -74,7 +76,7 @@ export default function RootLayout({
         
         {/* GLOBAL NAVBAR */}
         <header className="sticky top-0 z-50 bg-white w-full border-b border-gray-200">
-          <nav className="max-w-[1600px] mx-auto px-4 md:px-10 flex items-center justify-between h-14 text-[13px]">
+          <nav className="max-w-6xl mx-auto px-4 md:px-10 flex items-center justify-between h-14 text-[13px]">
             
             {/* Left Side: Logo + Mobile Menu Toggle */}
             <div className="flex items-center h-full">
@@ -109,15 +111,7 @@ export default function RootLayout({
 
             {/* Right Side */}
             <div className="flex items-center h-full gap-1 md:gap-2 text-black font-medium">
-              <div className="hidden lg:flex items-center h-full mr-2">
-                <Link href="/all-neitzen" className="px-4 h-full flex items-center hover:underline hover:underline-offset-[6px] decoration-2 cursor-pointer">
-                  All Neitzen <ChevronRight size={14} className="ml-1 rotate-90" />
-                </Link>
-              </div>
-              
-              <button className="p-2 hover:bg-gray-100 rounded-sm cursor-pointer" title="Search">
-                <Search size={20} className="text-black stroke-[2.5]" />
-              </button>
+              <SearchBar />
               
               {/* AUTH STATE UI */}
               {user ? (
@@ -132,7 +126,7 @@ export default function RootLayout({
 
                   {/* SIGN OUT DROPDOWN */}
                   {isUserMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg py-2 z-[60]">
+                    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg py-2 z-60">
                       <div className="px-4 py-2 border-b border-gray-100">
                         <p className="text-[11px] text-gray-500 truncate">{user.email}</p>
                       </div>
@@ -157,7 +151,13 @@ export default function RootLayout({
 
           {/* MOBILE DROPDOWN MENU */}
           {isMenuOpen && (
-            <div className="block md:hidden bg-white shadow-lg border-t border-gray-100 w-full">
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="block md:hidden bg-white shadow-lg border-t border-gray-100 w-full"
+            >
               <nav className="flex flex-col font-medium text-[#262626]">
                 {['AIDA OS', 'Products', 'Solutions', 'Pricing', 'Support'].map((link) => (
                   <Link
@@ -169,15 +169,9 @@ export default function RootLayout({
                     {link}
                   </Link>
                 ))}
-                <Link 
-                  href="/all-neitzen"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="py-4 px-6 text-left hover:bg-gray-50 flex items-center justify-between border-b border-gray-100 w-full transition-colors block"
-                >
-                  All Neitzen <ChevronRight size={16} />
-                </Link>
+
               </nav>
-            </div>
+            </motion.div>
           )}
         </header>
 
@@ -188,7 +182,7 @@ export default function RootLayout({
 
         {/* GLOBAL FOOTER */}
         <footer className="bg-[#f2f2f2] text-[#616161] text-[12px] mt-10 md:mt-20">
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <div className="max-w-6xl mx-auto px-6 md:px-10 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             <div>
               <h4 className="font-semibold text-gray-800 mb-4">Whats new</h4>
               <ul className="space-y-3">
@@ -214,7 +208,7 @@ export default function RootLayout({
             </div>
           </div>
 
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between text-[11px] gap-4">
+          <div className="max-w-6xl mx-auto px-6 md:px-10 py-6 flex flex-col md:flex-row items-center justify-between text-[11px] gap-4">
             <div className="flex items-center gap-2 cursor-pointer hover:underline">
               <Globe size={14} /> English (Nigeria)
             </div>

@@ -321,6 +321,10 @@ export default function AidaProductPage() {
 
           {/* 02: OPERATIONS */}
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
+            <ScrollFlowSection fromLeft={false}>
+              <FeatureGraphic src="/image2.svg" alt="AIDA Operations" />
+            </ScrollFlowSection>
+            
             <ScrollFlowSection fromLeft={true}>
               <>
                 <div className="flex items-center gap-3 mb-4 text-[#0067b8]">
@@ -353,9 +357,6 @@ export default function AidaProductPage() {
                   <strong>Collaboration:</strong> Syncs customer behavior with the Marketing engine to trigger personalized automated campaigns.
                 </div>
               </>
-            </ScrollFlowSection>
-            <ScrollFlowSection fromLeft={false}>
-              <FeatureGraphic src="/image2.svg" alt="AIDA Operations" />
             </ScrollFlowSection>
           </div>
 
@@ -403,6 +404,9 @@ export default function AidaProductPage() {
 
           {/* 04: BUSINESS INTELLIGENCE */}
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
+            <ScrollFlowSection fromLeft={false}>
+              <FeatureGraphic src="/image4.svg" alt="AIDA Intelligence" />
+            </ScrollFlowSection>
             <ScrollFlowSection fromLeft={true}>
               <>
                 <div className="flex items-center gap-3 mb-4 text-[#0067b8]">
@@ -435,9 +439,6 @@ export default function AidaProductPage() {
                   <strong>Collaboration:</strong> Acts as the &quot;Brain&quot; that instructs the Growth engine to pivot strategies when conversion dips.
                 </div>
               </>
-            </ScrollFlowSection>
-            <ScrollFlowSection fromLeft={false}>
-              <FeatureGraphic src="/image4.svg" alt="AIDA Intelligence" />
             </ScrollFlowSection>
           </div>
         </section>

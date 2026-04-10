@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { supabase } from '@/app/utils/supabase/supabase';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { 
   ArrowRight, Globe, Zap, BarChart3, Settings, 
   Cpu, MousePointer2, Share2, ShieldCheck, Rocket, Layers 
@@ -12,7 +13,6 @@ import {
 export default function AidaProductPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [scrollDirection, setScrollDirection] = useState('down');
   const lastScrollRef = useRef(0);
   const throttleTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -32,9 +32,9 @@ export default function AidaProductPage() {
       if (throttleTimerRef.current) return;
 
       if (currentScroll > lastScrollRef.current) {
-        setScrollDirection('down');
+        // down
       } else {
-        setScrollDirection('up');
+        // up
       }
       lastScrollRef.current = currentScroll;
 
@@ -54,13 +54,12 @@ export default function AidaProductPage() {
   const handleWaitlistSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   
-  const { data, error } = await supabase
+  const { data: _data, error } = await supabase
     .from('waitlist')
     .insert([{ email }]);
 
   if (error) {
     console.error('Error joining waitlist:', error.message);
-    // Optional: Add a toast notification for errors
   } else {
     setSubmitted(true);
     setEmail('');
@@ -75,14 +74,11 @@ export default function AidaProductPage() {
   // Animated section component with staggered children entrance
   const ScrollFlowSection = ({ children, fromLeft = true }: { children: React.ReactNode, fromLeft?: boolean }) => {
     const ref = useRef(null);
-    const { scrollYProgress } = useScroll({ target: ref, offset: ["start center", "center start"] });
+    const { scrollYProgress: _ } = useScroll({ target: ref, offset: ["start center", "center start"] });
 
     // Softer, gentler movement
-    const startX = fromLeft ? -30 : 30;
-    const endX = 0;
-
-    const x = useTransform(scrollYProgress, [0, 1], [startX, endX], { clamp: true });
-    const opacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0, 1, 1, 0]);
+    const _startX = fromLeft ? -30 : 30;
+    const _endX = 0;
 
     const containerVariants = {
       hidden: { opacity: 0 },
@@ -91,7 +87,7 @@ export default function AidaProductPage() {
         transition: {
           staggerChildren: 0.12,
           delayChildren: 0.05,
-          duration: 0.5
+          duration: 0.6
         }
       },
       exit: {
@@ -109,7 +105,7 @@ export default function AidaProductPage() {
         opacity: 1,
         x: 0,
         transition: { 
-          duration: 0.5
+          duration: 0.6
         }
       },
       exit: {
@@ -133,7 +129,7 @@ export default function AidaProductPage() {
         style={{ willChange: 'transform, opacity' }}
       >
         {childArray.length > 1 ? (
-          childArray.map((child, index) => (
+          childArray.map((child: React.ReactNode, index: number) => (
             <motion.div key={index} variants={childVariants}>
               {child}
             </motion.div>
@@ -152,7 +148,7 @@ export default function AidaProductPage() {
     <motion.div
       animate={{ y: [0, -8, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", repeatType: "loop" }}
-      className={`p-4 rounded-2xl bg-white/[0.03] border border-white/10 mb-6 group-hover:border-${color}/50 transition-colors shadow-2xl`}
+      className="p-4 rounded-2xl bg-white/3 border border-white/10 mb-6 transition-colors shadow-2xl group-hover:border-emerald-500/50"
       style={{ willChange: 'transform' }}
     >
       <motion.div
@@ -168,8 +164,7 @@ export default function AidaProductPage() {
   // UPDATED: Sleeker, modern graphic with "Fill" and "Scan" effect
   const FeatureGraphic = ({ src, alt }: { src: string, alt: string }) => (
     <div 
-      className="relative w-full h-[280px] group overflow-hidden border border-white/10 bg-[#0f0f0f]"
-      style={{ borderRadius: '24px 0 24px 0' }}
+      className="relative w-full h-70 group overflow-hidden border border-white/10 bg-[#0f0f0f] rounded-xl"
     >
       {/* Ambient Glows */}
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-emerald-500/10 blur-[80px] rounded-full group-hover:bg-emerald-500/20 transition-colors duration-700" />
@@ -184,9 +179,9 @@ export default function AidaProductPage() {
           className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale-[0.5] group-hover:grayscale-0" 
         />
         
-        {/* Modern "Scan" Effect Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.03)_50%,transparent_100%)] bg-[length:100%_4px] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60" />
+        {/* Modern Scan Effect Overlay */}
+        <div className="absolute inset-0 pointer-events-none" style={{backgroundImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%)', backgroundSize: '100% 4px', backgroundRepeat: 'repeat-y'}} />
+        <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60" />
       </div>
     </div>
   );
@@ -195,25 +190,25 @@ export default function AidaProductPage() {
     <div className="bg-[#0a0a0a] min-h-screen text-white relative overflow-hidden">
       
       {/* THE TRAIL: Animated scroll path */}
-      <div className="absolute left-1/2 top-[100vh] bottom-0 w-[1px] -translate-x-1/2 z-0 hidden md:block">
+      <div className="absolute left-1/2 top-96 bottom-0 w-px -translate-x-1/2 z-0 hidden md:block">
         <div className="h-full w-full bg-white/5 relative">
           <motion.div 
             style={{ scaleY }}
-            className="absolute top-0 left-0 w-full bg-gradient-to-b from-transparent via-[#0067b8] to-emerald-500 origin-top h-full"
+            className="absolute top-0 left-0 w-full bg-linear-to-b from-transparent via-[#0067b8] to-emerald-500 origin-top h-full"
           />
         </div>
       </div>
 
       {/* AMBIENT BACKGROUND EFFECT */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 blur-[120px] rounded-full mix-blend-screen" />
-        <div className="absolute top-[20%] right-0 w-[400px] h-[600px] bg-white/[0.03] blur-[100px] rounded-full" />
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/[0.02] via-transparent to-transparent" />
+        <div className="absolute top-0 left-1/4 w-125 h-125 bg-emerald-500/10 blur-3xl rounded-full mix-blend-screen" />
+        <div className="absolute top-1/5 right-0 w-100 h-150 bg-white/3 blur-2xl rounded-full" />
+        <div className="absolute inset-0 bg-linear-to-b from-emerald-500/2 via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10">
         {/* HERO SECTION */}
-        <section className="relative pt-24 pb-20 px-6 md:px-10 max-w-[1600px] mx-auto flex flex-col items-center text-center">
+        <section className="relative pt-24 pb-20 px-6 md:px-10 max-w-6xl mx-auto flex flex-col items-center text-center">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="max-w-4xl mx-auto flex flex-col items-center">
             <div className="mb-8">
               <Image src="/aida2.png" alt="AIDA Text Logo" width={200} height={60} className="object-contain" />
@@ -228,7 +223,7 @@ export default function AidaProductPage() {
               <button onClick={() => document.getElementById('early-access')?.scrollIntoView({ behavior: 'smooth' })} className="bg-[#0067b8] text-white px-8 py-3 font-semibold hover:bg-[#005da6] transition-colors flex items-center justify-center gap-2">
                 Get Early Access <ArrowRight size={18} />
               </button>
-              <button className="bg-transparent text-white border border-gray-700 px-8 py-3 font-semibold hover:bg-white/5 transition-colors">
+              <button onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })} className="bg-transparent text-white border border-gray-700 px-8 py-3 font-semibold hover:bg-white/5 transition-colors">
                 Explore Features
               </button>
             </div>
@@ -236,7 +231,7 @@ export default function AidaProductPage() {
         </section>
 
         {/* RE-ADDED CARD SECTION WITH 3D ICONS */}
-        <section className="px-6 md:px-10 max-w-[1600px] mx-auto pb-24">
+        <section className="px-6 md:px-10 max-w-6xl mx-auto pb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { title: "Online Presence", icon: <Globe size={32} />, color: "emerald-400", desc: "Instantly launch conversion-optimized digital footprints." },
@@ -251,9 +246,9 @@ export default function AidaProductPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="group p-8 rounded-3xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all cursor-default relative overflow-hidden"
+                className="group p-8 rounded-3xl bg-white/2 border border-white/5 hover:bg-white/4 transition-all cursor-default relative overflow-hidden"
               >
-                <div className={`absolute top-0 right-0 w-24 h-24 bg-${card.color}/10 blur-[40px] rounded-full`} />
+                <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 blur-2xl rounded-full" />
                 <FloatingIcon color={card.color}>{card.icon}</FloatingIcon>
                 <h3 className="text-lg font-bold mb-3">{card.title}</h3>
                 <p className="text-gray-500 text-xs leading-relaxed">{card.desc}</p>
@@ -264,7 +259,7 @@ export default function AidaProductPage() {
 
         {/* METRICS SECTION */}
         <section className="bg-[#111111]/40 backdrop-blur-sm border-y border-white/5 py-16">
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="max-w-6xl mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: "10x", label: "Faster Deployment" },
               { value: "24/7", label: "Autonomous Marketing" },
@@ -280,7 +275,7 @@ export default function AidaProductPage() {
         </section>
 
         {/* COMPREHENSIVE FEATURES SECTION */}
-        <section className="py-24 max-w-[1400px] mx-auto px-6 md:px-10 space-y-48 relative">
+        <section id="features" className="py-24 max-w-5xl mx-auto px-6 md:px-10 space-y-48 relative">
           
           {/* 01: ONLINE PRESENCE */}
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
@@ -437,7 +432,7 @@ export default function AidaProductPage() {
                   </div>
                 </div>
                 <div className="p-4 bg-emerald-500/5 border-l-2 border-emerald-500 text-xs italic text-emerald-200/80">
-                  <strong>Collaboration:</strong> Acts as the "Brain" that instructs the Growth engine to pivot strategies when conversion dips.
+                  <strong>Collaboration:</strong> Acts as the &quot;Brain&quot; that instructs the Growth engine to pivot strategies when conversion dips.
                 </div>
               </>
             </ScrollFlowSection>
@@ -456,12 +451,12 @@ export default function AidaProductPage() {
             <p className="text-gray-400 mb-8 text-sm">Join the exclusive waitlist. We are rolling out access to a select group of businesses ahead of our official launch.</p>
             {submitted ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-green-900/20 border border-green-800 text-green-400 p-6 rounded-lg">
-                <h3 className="font-bold text-base mb-2">You're on the list!</h3>
-                <p className="text-sm">Keep an eye on your inbox. We'll be in touch soon.</p>
+                <h3 className="font-bold text-base mb-2">You&apos;re on the list!</h3>
+                <p className="text-sm">Keep an eye on your inbox. We&apos;ll be in touch soon.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleWaitlistSubmit} className="flex flex-col sm:flex-row gap-3">
-                <input type="email" required placeholder="Enter your work email" value={email} onChange={(e) => setEmail(e.target.value)} className="flex-1 px-4 py-3 bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-[#0067b8] transition-colors rounded-lg" />
+                <input type="email" required placeholder="Enter your work email" value={email} onChange={(e) => setEmail(e.target.value)} className="flex-1 px-4 py-3 bg-white/3 border border-white/10 text-white focus:outline-none focus:border-[#0067b8] transition-colors rounded-lg" />
                 <button type="submit" className="bg-white text-black px-8 py-3 font-semibold hover:bg-gray-200 transition-colors whitespace-nowrap rounded-lg">Request Access</button>
               </form>
             )}

@@ -446,7 +446,7 @@ export default function AidaProductPage() {
         <section id="early-access" className="py-24 max-w-3xl mx-auto px-6 md:px-10 text-center relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-500/10 blur-[80px] rounded-full z-0" />
           <div className="relative z-10">
-            <Image src="/aida.png" alt="AIDA Logo icon" width={64} height={64} className="mx-auto mb-6 rounded-lg shadow-sm" />
+            <Image src="/aida.webp" alt="AIDA Logo icon" width={64} height={64} className="mx-auto mb-6 rounded-lg shadow-sm" />
             <h2 className="text-2xl font-bold text-white mb-4">Be the first to experience AIDA.</h2>
             <p className="text-gray-400 mb-8 text-sm">Join the exclusive waitlist. We are rolling out access to a select group of businesses ahead of our official launch.</p>
             {submitted ? (

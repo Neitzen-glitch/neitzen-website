@@ -42,7 +42,7 @@ export default function Home() {
       title: 'AIDA',
       subtitle: 'Business OS',
       description: 'The intelligent operating system that unifies your entire business. Manage operations, automate workflows, and scale effortlessly with AI-powered insights.',
-      image: '/aida2.png',
+      image: '/aida2.webp',
       link: '/aida-os',
       features: ['Unified Business Management', 'AI-Powered Automation', 'Real-time Analytics Dashboard', 'Multi-team Collaboration', 'Enterprise Security']
     },
@@ -50,7 +50,7 @@ export default function Home() {
       title: 'Neon AI',
       subtitle: 'AI Intelligence',
       description: 'Advanced artificial intelligence for predictive analytics, natural language processing, and autonomous decision-making. Powered by next-gen neural architectures.',
-      image: '/image9.png',
+      image: '/image9.webp',
       link: '#',
       features: ['Predictive Analytics', 'Natural Language Processing', 'Autonomous Decision Making', 'Real-time Learning', 'Custom Model Training']
     },
@@ -58,7 +58,7 @@ export default function Home() {
       title: 'Data Bank',
       subtitle: 'Data Center',
       description: 'Enterprise-grade distributed data infrastructure with real-time sync, advanced analytics, and 99.99% uptime guarantees. Your data, always accessible.',
-      image: '/image10.png',
+      image: '/image10.webp',
       link: '#',
       features: ['99.99% Uptime SLA', 'Real-time Data Sync', 'Advanced Analytics', 'Geographic Redundancy', 'Compliance Ready']
     },
@@ -66,7 +66,7 @@ export default function Home() {
       title: 'Kree',
       subtitle: 'Game & Entertainment',
       description: 'Complete game development and interactive entertainment platform. Build immersive experiences with powerful tools, cloud deployment, and monetization.',
-      image: '/image8.png',
+      image: '/image8.webp',
       link: '#',
       features: ['Game Development Suite', 'Cloud Deployment', 'Monetization Tools', 'Multiplayer Framework', 'Asset Marketplace']
     }
@@ -77,14 +77,17 @@ export default function Home() {
       
       {/* HERO SECTION */}
       <section className="relative w-full max-w-6xl mx-auto px-0 md:px-10 mt-2">
-        <div className="relative w-full min-h-screen md:h-96 overflow-hidden rounded-sm flex items-center bg-gray-100">
+        {/* FIX APPLIED HERE: Replaced min-h-screen with min-h-[450px] to prevent mobile stretching */}
+        <div className="relative w-full min-h-112.5 md:min-h-125 overflow-hidden rounded-sm flex items-center bg-gray-100">
           
           {/* THE BACKGROUND IMAGE */}
           <Image
-            src="/bg1.png"
+            src="/bg1.webp"
             alt="Neitzen AIDA OS Background"
             fill
             priority
+            quality={85} // Reduced from 100 to 85 (unnoticeable quality drop, huge size saving)
+            sizes="100vw" // Tells the browser exactly how wide the image will be
             className="object-cover object-right z-0"
           />
 
@@ -125,10 +128,10 @@ export default function Home() {
       <section className="py-12 md:py-16 max-w-6xl mx-auto px-6 md:px-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 md:flex md:flex-wrap md:justify-center gap-8 md:gap-16">
           {[
-            { name: 'AIDA', color: 'bg-black', logo: '/aida.png' },
-            { name: 'Neon AI', color: 'bg-white', logo: '/logo.png' },
-            { name: 'Data Bank', color: 'bg-gray-200', logo: '/logo3.png' },
-            { name: 'Kree', color: 'bg-gray-200', logo: '/logo2.png' }
+            { name: 'AIDA', color: 'bg-black', logo: '/aida.webp' },
+            { name: 'Neon AI', color: 'bg-white', logo: '/logo.webp' },
+            { name: 'Data Bank', color: 'bg-gray-200', logo: '/logo3.webp' },
+            { name: 'Kree', color: 'bg-gray-200', logo: '/logo2.webp' }
           ].map((item, index) => (
             <div key={index} className="flex flex-col items-center gap-3 text-center pointer-events-none">
               <div className="w-10 h-10 flex items-center justify-center">

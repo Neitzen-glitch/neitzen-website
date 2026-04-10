@@ -211,7 +211,7 @@ export default function AidaProductPage() {
         <section className="relative pt-24 pb-20 px-6 md:px-10 max-w-6xl mx-auto flex flex-col items-center text-center">
           <motion.div initial="hidden" animate="visible" variants={fadeInUp} className="max-w-4xl mx-auto flex flex-col items-center">
             <div className="mb-8">
-              <Image src="/aida2.png" alt="AIDA Text Logo" width={200} height={60} className="object-contain" />
+              <Image src="/aida2.webp" alt="AIDA Text Logo" width={200} height={60} className="object-contain" />
             </div>
             <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mb-6">
               The intelligent operating system <br className="hidden md:block"/> for modern businesses.

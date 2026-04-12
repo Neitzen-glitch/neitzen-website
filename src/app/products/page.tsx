@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-no-comment-textnodes */
 "use client";
 
 import Link from 'next/link';
@@ -12,15 +14,24 @@ import {
 } from 'lucide-react';
 import { useRef } from 'react';
 
+const fadeUp = {
+hidden: { opacity: 0, y: 30 },
+visible: { opacity: 1, y: 0 }
+};
+
 export default function ComprehensiveProductsPage() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: containerRef });
-  
+  const containerRef = useRef(null);  
   // Base Animations - Fixed variant definitions to resolve IDE red lines
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
+// 1. Define variants (Ideally OUTSIDE the component to prevent re-renders)
+
+    <motion.div 
+        variants={fadeUp}    // The object
+        initial="hidden"     // Must match a key in fadeUp
+        animate="visible"    // Must match a key in fadeUp
+    >
+        Content
+    </motion.div>
+
 
   const stagger = {
     hidden: { opacity: 0 },
@@ -98,7 +109,7 @@ export default function ComprehensiveProductsPage() {
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
               <div className="space-y-4">
-                <p><span className="text-blue-400">const</span> <span className="text-green-400">neonCore</span> = <span className="text-blue-400">new</span> <span className="text-yellow-400">NeonEngine</span>({`{`}</p>
+                <p><span className="text-blue-400">const</span> <span className="text-green-400">neonCore</span> = <span className="text-blue-400">new</span> <span className="text-yellow-400">NeonEngine</span>{`{`}</p>
                 <p className="pl-4">mode: <span className="text-orange-400">'AUTONOMOUS'</span>,</p>
                 <p className="pl-4">failover: <span className="text-blue-400">true</span>,</p>
                 <p className="pl-4">maxLatency: <span className="text-orange-400">50</span> <span className="text-slate-500">// ms</span></p>

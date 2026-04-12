@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const neitzenMetadata: Metadata = {
   metadataBase: new URL('https://neitzen.tech'),
   title: {
-    default: 'Neitzen | AGI Research & Assistive AI Technologies',
+    default: 'Neitzen Technologies',
     template: '%s | Neitzen'
   },
   description: 'Neitzen is a global technology company specializing in AGI research, high-fidelity data synthesis for model training, and assistive software solutions.',
@@ -57,5 +57,11 @@ export const neitzenMetadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+
+  // 3. APP CATEGORY (Helps with mobile shares)
+  appleWebApp: {
+    title: 'Neitzen',
+    statusBarStyle: 'default',
   },
 };

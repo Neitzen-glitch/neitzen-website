@@ -50,7 +50,7 @@ export default function Home() {
       title: 'Neon AI',
       subtitle: 'AI Intelligence',
       description: 'Advanced artificial intelligence for predictive analytics, natural language processing, and autonomous decision-making. Powered by next-gen neural architectures.',
-      image: '/image9.webp',
+      image: '/image5.webp',
       link: '#',
       features: ['Predictive Analytics', 'Natural Language Processing', 'Autonomous Decision Making', 'Real-time Learning', 'Custom Model Training']
     },
@@ -58,7 +58,7 @@ export default function Home() {
       title: 'Data Bank',
       subtitle: 'Data Center',
       description: 'Enterprise-grade distributed data infrastructure with real-time sync, advanced analytics, and 99.99% uptime guarantees. Your data, always accessible.',
-      image: '/image10.webp',
+      image: '/image6.webp',
       link: '#',
       features: ['99.99% Uptime SLA', 'Real-time Data Sync', 'Advanced Analytics', 'Geographic Redundancy', 'Compliance Ready']
     },
@@ -66,7 +66,7 @@ export default function Home() {
       title: 'Kree',
       subtitle: 'Game & Entertainment',
       description: 'Complete game development and interactive entertainment platform. Build immersive experiences with powerful tools, cloud deployment, and monetization.',
-      image: '/image8.webp',
+      image: '/image7.webp',
       link: '#',
       features: ['Game Development Suite', 'Cloud Deployment', 'Monetization Tools', 'Multiplayer Framework', 'Asset Marketplace']
     }
@@ -164,7 +164,7 @@ export default function Home() {
                 alt={product.title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                className="object-contain group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             <h3 className="text-[18px] md:text-[20px] font-semibold mb-1 text-[#262626]">{product.title}</h3>

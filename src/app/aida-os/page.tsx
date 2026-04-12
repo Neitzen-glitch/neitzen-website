@@ -164,24 +164,26 @@ export default function AidaProductPage() {
   // UPDATED: Sleeker, modern graphic with "Fill" and "Scan" effect
   const FeatureGraphic = ({ src, alt }: { src: string, alt: string }) => (
     <div 
-      className="relative w-full h-70 group overflow-hidden border border-white/10 bg-[#0f0f0f] rounded-xl"
+      className="relative w-full h-72 group overflow-hidden border border-white/10 bg-[#0f0f0f] rounded-xl"
     >
       {/* Ambient Glows */}
-      <div className="absolute -top-20 -left-20 w-64 h-64 bg-emerald-500/10 blur-[80px] rounded-full group-hover:bg-emerald-500/20 transition-colors duration-700" />
-      <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#0067b8]/10 blur-[80px] rounded-full group-hover:bg-[#0067b8]/20 transition-colors duration-700" />
+      <div className="absolute -top-20 -left-20 w-64 h-64 bg-emerald-500/10 blur-[80px] rounded-full group-hover:bg-emerald-500/20 transition-colors duration-700 z-0" />
+      <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#0067b8]/10 blur-[80px] rounded-full group-hover:bg-[#0067b8]/20 transition-colors duration-700 z-0" />
       
-      {/* Image Container */}
-      <div className="relative z-10 w-full h-full overflow-hidden">
+      {/* Image Container - CHANGED: Absolute inset-0 guarantees layout stability for WebP */}
+      <div className="absolute inset-0 z-10 overflow-hidden">
         <Image 
           src={src} 
           alt={alt} 
-          fill 
-          className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale-[0.5] group-hover:grayscale-0" 
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 grayscale group-hover:grayscale-0" 
         />
         
         {/* Modern Scan Effect Overlay */}
         <div className="absolute inset-0 pointer-events-none" style={{backgroundImage: 'linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%)', backgroundSize: '100% 4px', backgroundRepeat: 'repeat-y'}} />
-        <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60" />
+        {/* CHANGED: Added pointer-events-none to prevent overlay from blocking interaction */}
+        <div className="absolute inset-0 bg-linear-to-t from-[#0a0a0a] via-transparent to-transparent      opacity-60 pointer-events-none" />
       </div>
     </div>
   );
@@ -281,7 +283,7 @@ export default function AidaProductPage() {
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
             <ScrollFlowSection fromLeft={true}>
               <div className="order-2 md:order-1">
-                <FeatureGraphic src="/image1.svg" alt="AIDA Site Engine" />
+                <FeatureGraphic src="/image1.webp" alt="AIDA Site Engine"/>
               </div>
             </ScrollFlowSection>
             <ScrollFlowSection fromLeft={false}>
@@ -322,7 +324,7 @@ export default function AidaProductPage() {
           {/* 02: OPERATIONS */}
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
             <ScrollFlowSection fromLeft={false}>
-              <FeatureGraphic src="/image2.svg" alt="AIDA Operations" />
+              <FeatureGraphic src="/image2.webp" alt="AIDA Operations" />
             </ScrollFlowSection>
             
             <ScrollFlowSection fromLeft={true}>
@@ -364,7 +366,7 @@ export default function AidaProductPage() {
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
             <ScrollFlowSection fromLeft={true}>
               <div className="order-2 md:order-1">
-                <FeatureGraphic src="/image3.svg" alt="AIDA Marketing" />
+                <FeatureGraphic src="/image3.webp" alt="AIDA Marketing" />
               </div>
             </ScrollFlowSection>
             <ScrollFlowSection fromLeft={false}>
@@ -405,7 +407,7 @@ export default function AidaProductPage() {
           {/* 04: BUSINESS INTELLIGENCE */}
           <div className="grid md:grid-cols-2 gap-20 items-center relative">
             <ScrollFlowSection fromLeft={false}>
-              <FeatureGraphic src="/image4.svg" alt="AIDA Intelligence" />
+              <FeatureGraphic src="/image4.webp" alt="AIDA Intelligence" />
             </ScrollFlowSection>
             <ScrollFlowSection fromLeft={true}>
               <>
@@ -436,7 +438,7 @@ export default function AidaProductPage() {
                   </div>
                 </div>
                 <div className="p-4 bg-emerald-500/5 border-l-2 border-emerald-500 text-xs italic text-emerald-200/80">
-                  <strong>Collaboration:</strong> Acts as the &quot;Brain&quot; that instructs the Growth engine to pivot strategies when conversion dips.
+                  <strong>Collaboration:</strong> Acts as the "Brain" that instructs the Growth engine to pivot strategies when conversion dips.
                 </div>
               </>
             </ScrollFlowSection>
@@ -452,8 +454,8 @@ export default function AidaProductPage() {
             <p className="text-gray-400 mb-8 text-sm">Join the exclusive waitlist. We are rolling out access to a select group of businesses ahead of our official launch.</p>
             {submitted ? (
               <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="bg-green-900/20 border border-green-800 text-green-400 p-6 rounded-lg">
-                <h3 className="font-bold text-base mb-2">You&apos;re on the list!</h3>
-                <p className="text-sm">Keep an eye on your inbox. We&apos;ll be in touch soon.</p>
+                <h3 className="font-bold text-base mb-2">You're on the list!</h3>
+                <p className="text-sm">Keep an eye on your inbox. We'll be in touch soon.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleWaitlistSubmit} className="flex flex-col sm:flex-row gap-3">

@@ -3,7 +3,7 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { 
   BarChart3, ShoppingBag, 
   Zap, ShieldCheck, PlayCircle, 
@@ -13,19 +13,33 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-// Animation Variants - defined outside to prevent re-renders
-const fadeInUp = {
+// --- Interfaces ---
+interface Solution {
+  title: string;
+  icon: React.ReactNode;
+  description: string;
+  tags: string[];
+  benefit: string;
+}
+
+interface Industry {
+  name: string;
+  icon: React.ReactNode;
+}
+
+// --- Animation Variants ---
+const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
 };
 
-// Floating animation for the right-side visual
-const floating = {
+// Floating animation fix: Ensure keys match the animate prop
+const floating: Variants = {
   animate: {
     y: [0, -15, 0],
     transition: {
@@ -37,9 +51,7 @@ const floating = {
 };
 
 export default function SolutionsPage() {
-
-
-  const solutions = [
+  const solutions: Solution[] = [
     {
       title: "Hyper-Personalized E-Commerce",
       icon: <ShoppingBag className="text-blue-600" size={28} />,
@@ -63,7 +75,7 @@ export default function SolutionsPage() {
     }
   ];
 
-  const industries = [
+  const industries: Industry[] = [
     { name: "FinTech", icon: <ShieldCheck size={20} /> },
     { name: "Healthcare", icon: <Cpu size={20} /> },
     { name: "SaaS & Tech", icon: <Code2 size={20} /> },
@@ -73,7 +85,7 @@ export default function SolutionsPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-100">
       
-      {/* ================= HERO SECTION (Updated to 2-Column) ================= */}
+      {/* ================= HERO SECTION ================= */}
       <section className="relative pt-10 pb-20 px-6 bg-white border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -100,7 +112,7 @@ export default function SolutionsPage() {
               </div>
             </motion.div>
 
-            {/* Right Visual (Microsoft-Inspired Solution Architecture) */}
+            {/* Right Visual */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -109,7 +121,7 @@ export default function SolutionsPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-teal-50 rounded-full blur-3xl opacity-50" />
               
-              {/* Floating Solution Cards */}
+              {/* FIX: Floating variants applied correctly */}
               <motion.div variants={floating} animate="animate" className="relative z-10 w-full max-w-md">
                 {/* Neon AI Layer */}
                 <div className="absolute -top-10 -left-10 p-6 bg-white/80 backdrop-blur-md border border-slate-200 shadow-xl rounded-2xl flex items-center gap-4 w-64 translate-x-4">

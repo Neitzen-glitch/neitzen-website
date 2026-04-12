@@ -72,7 +72,7 @@ export default function Home() {
       subtitle: 'Neural Architecture',
       description: 'Advanced assistive intelligence leveraging Neitzen’s internal AGI research to provide autonomous decision-making and predictive data processing.',
       image: '/image5.webp',
-      link: '/products',
+      link: '/products#neonAi',
       features: ['Neural Logic Engines', 'Predictive Analysis', 'Autonomous Decisioning', 'Proprietary Research Models']
     },
     {
@@ -80,7 +80,7 @@ export default function Home() {
       subtitle: 'Model Training Infrastructure',
       description: 'The foundation of intelligence. High-fidelity data synthesis and infrastructure used for training large-scale models with 99.99% reliability.',
       image: '/image6.webp',
-      link: '/products',
+      link: '/products#dataBank',
       features: ['Dataset Synthesis', 'Real-time Sync', 'Model Training Ready', 'Enterprise Data Security']
     },
     {
@@ -88,7 +88,7 @@ export default function Home() {
       subtitle: 'Interactive Entertainment',
       description: 'A platform merging the internet and AI to build immersive, interactive experiences and assistive software for the next generation of digital media.',
       image: '/image7.webp',
-      link: '/products',
+      link: '/products#kree',
       features: ['AI Experience Suite', 'Cloud Deployment', 'Monetization Framework', 'Interactive Framework']
     }
   ];
@@ -293,7 +293,7 @@ export default function Home() {
                   href={selectedProduct.link}
                   className="w-full block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
                 >
-                  Get Started
+                  View More
                 </Link>
               </div>
             </motion.div>

@@ -62,7 +62,7 @@ export default function ComprehensiveProductsPage() {
 
       {/* ================= NEON AI: THE BRAIN ================= */}
       {/* Updated Gradient: blue-100 for more obvious depth */}
-      <section className="relative w-full bg-gradient-to-b from-blue-100 via-white to-slate-100 border-t border-slate-200">
+      <section className="relative w-full bg-gradient-to-b from-blue-100 via-white to-slate-100 border-t border-slate-200" id='neonAi'>
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
           
           {/* Product Title Integrated (No sticky bar) */}
@@ -143,7 +143,7 @@ export default function ComprehensiveProductsPage() {
 
       {/* ================= DATA BANK: THE VAULT ================= */}
       {/* Updated Gradient: teal-100 to blue-100 for more obvious change */}
-      <section className="relative w-full bg-gradient-to-b from-teal-100 via-white to-blue-100 border-t border-slate-200">
+      <section className="relative w-full bg-gradient-to-b from-teal-100 via-white to-blue-100 border-t border-slate-200" id='dataBank'>
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
           
           {/* Product Title Integrated (No sticky bar) */}
@@ -155,7 +155,7 @@ export default function ComprehensiveProductsPage() {
           </div>
 
           {/* Data Bank Hero */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-24 text-right flex flex-col items-end">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="mb-24 text-right flex flex-col items-end" >
             <h3 className="text-4xl md:text-5xl font-bold mb-6">High-fidelity data.<br/>Zero-trust security.</h3>
             <p className="text-xl text-slate-600 max-w-3xl">
               AI is only as intelligent as the data it consumes. Data Bank is our enterprise-grade storage and synthesis platform. It cleans, structures, and vectorizes massive datasets while maintaining military-grade compliance.
@@ -163,7 +163,7 @@ export default function ComprehensiveProductsPage() {
           </motion.div>
 
           {/* Data Bank Architecture */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24" >
             
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="order-2 lg:order-1 relative h-[600px] bg-white/60 backdrop-blur-sm rounded-2xl border border-slate-200 p-8 overflow-hidden flex flex-col justify-between shadow-xl">
               <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-500 via-transparent to-transparent"></div>
@@ -211,7 +211,7 @@ export default function ComprehensiveProductsPage() {
       </section>
 
       {/* ================= KREE: THE EXPERIENCE ================= */}
-      <section className="relative w-full bg-[#0a0a0a] text-white border-t border-slate-800">
+      <section className="relative w-full bg-[#0a0a0a] text-white border-t border-slate-800" id='kree'>
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-24">
           
           {/* Product Title Integrated (No sticky bar) */}

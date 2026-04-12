@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -46,38 +46,37 @@ export default function Home() {
   const products = [
     {
       title: 'AIDA',
-      subtitle: 'Business OS',
-      description: 'The intelligent operating system that unifies your entire business. Manage operations, automate workflows, and scale effortlessly with AI-powered insights.',
+      subtitle: 'Business Intelligence OS',
+      description: 'Neitzen’s flagship assistive platform. An intelligent operating system designed to automate business presence, SEO, and complex operations for business owners.',
       image: '/aida2.webp',
       link: '/aida-os',
-      features: ['Unified Business Management', 'AI-Powered Automation', 'Real-time Analytics Dashboard', 'Multi-team Collaboration', 'Enterprise Security']
+      features: ['Agentic Task Automation', 'AI-Driven SEO', 'Operational Autopilot', 'Multi-channel Marketing']
     },
     {
       title: 'Neon AI',
-      subtitle: 'AI Intelligence',
-      description: 'Advanced artificial intelligence for predictive analytics, natural language processing, and autonomous decision-making. Powered by next-gen neural architectures.',
+      subtitle: 'Neural Architecture',
+      description: 'Advanced assistive intelligence leveraging Neitzen’s internal AGI research to provide autonomous decision-making and predictive data processing.',
       image: '/image5.webp',
       link: '/products',
-      features: ['Predictive Analytics', 'Natural Language Processing', 'Autonomous Decision Making', 'Real-time Learning', 'Custom Model Training']
+      features: ['Neural Logic Engines', 'Predictive Analysis', 'Autonomous Decisioning', 'Proprietary Research Models']
     },
     {
       title: 'Data Bank',
-      subtitle: 'Data Center',
-      description: 'Enterprise-grade distributed data infrastructure with real-time sync, advanced analytics, and 99.99% uptime guarantees. Your data, always accessible.',
+      subtitle: 'Model Training Infrastructure',
+      description: 'The foundation of intelligence. High-fidelity data synthesis and infrastructure used for training large-scale models with 99.99% reliability.',
       image: '/image6.webp',
       link: '/products',
-      features: ['99.99% Uptime SLA', 'Real-time Data Sync', 'Advanced Analytics', 'Geographic Redundancy', 'Compliance Ready']
+      features: ['Dataset Synthesis', 'Real-time Sync', 'Model Training Ready', 'Enterprise Data Security']
     },
     {
       title: 'Kree',
-      subtitle: 'Game & Entertainment',
-      description: 'Complete game development and interactive entertainment platform. Build immersive experiences with powerful tools, cloud deployment, and monetization.',
+      subtitle: 'Interactive Entertainment',
+      description: 'A platform merging the internet and AI to build immersive, interactive experiences and assistive software for the next generation of digital media.',
       image: '/image7.webp',
       link: '/products',
-      features: ['Game Development Suite', 'Cloud Deployment', 'Monetization Tools', 'Multiplayer Framework', 'Asset Marketplace']
+      features: ['AI Experience Suite', 'Cloud Deployment', 'Monetization Framework', 'Interactive Framework']
     }
   ];
-
   return (
     <div className="w-full bg-white">
       
@@ -159,7 +158,7 @@ export default function Home() {
         {products.map((product, index) => (
           <div key={index} className="flex flex-col group cursor-pointer">
             <div className={`relative w-full h-60 mb-4 overflow-hidden rounded-sm flex items-center justify-center ${
-              index === 0 ? 'bg-black' : 'bg-slate-100'
+              index === 0 ? 'bg-black' : 'bg-black'
             }`}>
               <Image
                 src={product.image}

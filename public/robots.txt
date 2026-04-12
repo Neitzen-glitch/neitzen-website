@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /auth
+
+# Host
+Host: https://neitzen.tech
+
+# Sitemaps
+Sitemap: https://neitzen.tech/sitemap.xml

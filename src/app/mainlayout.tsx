@@ -155,7 +155,7 @@ export default function MainLayout({
             className="block md:hidden bg-white shadow-lg border-t border-gray-100 w-full"
           >
             <nav className="flex flex-col font-medium text-[#262626]">
-              {['AIDA OS', 'Products', 'Solutions', 'Pricing', 'Support'].map((link) => (
+              {['AIDA OS', 'Products', 'Solutions', 'Support'].map((link) => (
                 <Link
                   key={link}
                   href={getRoute(link)}

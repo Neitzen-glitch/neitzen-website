@@ -2,7 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronRight, X } from 'lucide-react';
+import { ChevronRight, X, TrendingUp, 
+  Orbit, 
+  BrainCircuit, 
+  Cpu, 
+  Layers,
+  Microscope
+} from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { createClient } from '@/app/utils/supabase/client';
 
@@ -51,7 +57,7 @@ export default function Home() {
       subtitle: 'AI Intelligence',
       description: 'Advanced artificial intelligence for predictive analytics, natural language processing, and autonomous decision-making. Powered by next-gen neural architectures.',
       image: '/image5.webp',
-      link: '#',
+      link: '/products',
       features: ['Predictive Analytics', 'Natural Language Processing', 'Autonomous Decision Making', 'Real-time Learning', 'Custom Model Training']
     },
     {
@@ -59,7 +65,7 @@ export default function Home() {
       subtitle: 'Data Center',
       description: 'Enterprise-grade distributed data infrastructure with real-time sync, advanced analytics, and 99.99% uptime guarantees. Your data, always accessible.',
       image: '/image6.webp',
-      link: '#',
+      link: '/products',
       features: ['99.99% Uptime SLA', 'Real-time Data Sync', 'Advanced Analytics', 'Geographic Redundancy', 'Compliance Ready']
     },
     {
@@ -67,7 +73,7 @@ export default function Home() {
       subtitle: 'Game & Entertainment',
       description: 'Complete game development and interactive entertainment platform. Build immersive experiences with powerful tools, cloud deployment, and monetization.',
       image: '/image7.webp',
-      link: '#',
+      link: '/products',
       features: ['Game Development Suite', 'Cloud Deployment', 'Monetization Tools', 'Multiplayer Framework', 'Asset Marketplace']
     }
   ];
@@ -77,21 +83,18 @@ export default function Home() {
       
       {/* HERO SECTION */}
       <section className="relative w-full max-w-6xl mx-auto px-0 md:px-10 mt-2">
-        {/* FIX APPLIED HERE: Replaced min-h-screen with min-h-[450px] to prevent mobile stretching */}
         <div className="relative w-full min-h-112.5 md:min-h-125 overflow-hidden rounded-sm flex items-center bg-gray-100">
           
-          {/* THE BACKGROUND IMAGE */}
           <Image
             src="/bg1.webp"
             alt="Neitzen AIDA OS Background"
             fill
             priority
-            quality={85} // Reduced from 100 to 85 (unnoticeable quality drop, huge size saving)
-            sizes="100vw" // Tells the browser exactly how wide the image will be
+            quality={85}
+            sizes="100vw"
             className="object-cover object-right z-0"
           />
 
-          {/* FLOATING TEXT BOX - NOW FULLY RESPONSIVE */}
           <div className="relative z-10 
             bg-white/85 backdrop-blur-md 
             shadow-2xl rounded-sm 
@@ -125,30 +128,29 @@ export default function Home() {
       </section>
 
       {/* ICON QUICK LINKS */}
-      <section className="py-12 md:py-16 max-w-6xl mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:flex md:flex-wrap md:justify-center gap-8 md:gap-16">
+       <section className="py-12 md:py-16 max-w-6xl mx-auto px-6 md:px-10">
+         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12">
           {[
-            { name: 'AIDA', color: 'bg-black', logo: '/aida.webp' },
-            { name: 'Neon AI', color: 'bg-white', logo: '/logo.webp' },
-            { name: 'Data Bank', color: 'bg-gray-200', logo: '/logo3.webp' },
-            { name: 'Kree', color: 'bg-gray-200', logo: '/logo2.webp' }
-          ].map((item, index) => (
-            <div key={index} className="flex flex-col items-center gap-3 text-center pointer-events-none">
-              <div className="w-10 h-10 flex items-center justify-center">
-                <div className={`relative w-8 h-8 ${item.color} rounded-sm shadow-sm overflow-hidden`}>
-                  <Image
-                    src={item.logo}
-                    alt={item.name}
-                    fill
-                    className="object-contain p-1"
-                  />
-                </div>
-              </div>
-              <span className="text-[#0067b8] font-semibold text-[13px] leading-tight">
-                {item.name}
-              </span>
-            </div>
-          ))}
+            { name: 'Advancement', icon: TrendingUp, color: 'text-blue-600' },
+            { name: 'Research', icon: Microscope, color: 'text-purple-600' },
+            { name: 'Intelligence', icon: BrainCircuit, color: 'text-amber-500' },
+            { name: 'Development', icon: Cpu, color: 'text-emerald-600' },
+            { name: 'Software', icon: Layers, color: 'text-indigo-600' },
+            { name: 'Technology', icon: Orbit, color: 'text-slate-700' }
+            ].map((item, index) => (
+         <div key={index} className="flex flex-col items-center gap-4 text-center group cursor-default">
+         <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 border border-gray-100 shadow-sm group-hover:shadow-md group-hover:bg-white transition-all duration-300">
+          <item.icon 
+            size={24} 
+            className={`${item.color} group-hover:scale-110 transition-transform duration-300`} 
+            strokeWidth={1.5}
+          />
+        </div>
+        <span className="text-[#262626] font-medium text-[13px] md:text-[14px] tracking-wide uppercase">
+            {item.name}
+          </span>
+          </div>
+         ))}
         </div>
       </section>
 
@@ -164,7 +166,10 @@ export default function Home() {
                 alt={product.title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className="object-contain group-hover:scale-105 transition-transform duration-500"
+                /* FIX: Conditional styling to center AIDA and cover others */
+                className={`transition-transform duration-500 group-hover:scale-105 ${
+                  product.title === 'AIDA' ? 'object-contain p-10' : 'object-cover'
+                }`}
               />
             </div>
             <h3 className="text-[18px] md:text-[20px] font-semibold mb-1 text-[#262626]">{product.title}</h3>
@@ -186,7 +191,6 @@ export default function Home() {
       {selectedProduct && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
-            {/* Close Button */}
             <button
               onClick={() => setSelectedProduct(null)}
               className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-lg transition-colors z-10"
@@ -195,9 +199,7 @@ export default function Home() {
               <X size={24} className="text-gray-600" />
             </button>
 
-            {/* Modal Content */}
             <div className="p-8">
-              {/* Product Image */}
               <div className={`relative w-full h-80 mb-6 overflow-hidden rounded-lg ${
                 selectedProduct.title === 'AIDA' ? 'bg-black' : 'bg-slate-100'
               }`}>
@@ -206,11 +208,11 @@ export default function Home() {
                   alt={selectedProduct.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
+                  /* MODAL FIX: Keeps modal images consistent with the grid */
+                  className={selectedProduct.title === 'AIDA' ? 'object-contain p-12' : 'object-cover'}
                 />
               </div>
 
-              {/* Product Details */}
               <div>
                 <h2 className="text-4xl font-bold mb-2 text-gray-900">{selectedProduct.title}</h2>
                 <p className="text-blue-600 font-semibold mb-4 text-lg">{selectedProduct.subtitle}</p>
@@ -219,7 +221,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Features List */}
               <div className="mb-6">
                 <h3 className="text-xl font-bold mb-4 text-gray-900">Key Features</h3>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -232,10 +233,12 @@ export default function Home() {
                 </ul>
               </div>
 
-              {/* CTA Button */}
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+
+              <Link 
+                href={selectedProduct.link}
+                className="w-full block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
         </div>

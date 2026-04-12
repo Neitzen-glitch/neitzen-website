@@ -53,7 +53,6 @@ export default function MainLayout({
       'AIDA OS': '/aida-os',
       'Products': '/products',
       'Solutions': '/solutions',
-      'Pricing': '/pricing',
       'Support': '/support',
       'Generative Sites': '/features/generative-sites',
       'AI Marketing': '/features/ai-marketing',
@@ -94,7 +93,7 @@ export default function MainLayout({
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center h-full space-x-1 text-black font-medium">
-              {['AIDA OS', 'Products', 'Solutions', 'Pricing', 'Support'].map((link) => (
+              {['AIDA OS', 'Products', 'Solutions', 'Support'].map((link) => (
                 <Link 
                   key={link} 
                   href={getRoute(link)} 

@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-unescaped-entities */
+
 "use client";
 
 import { supabase } from '@/app/utils/supabase/supabase';

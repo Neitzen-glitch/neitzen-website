@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import SearchBar from '@/components/SearchBar';
 
+
 export default function MainLayout({
   children,
 }: {

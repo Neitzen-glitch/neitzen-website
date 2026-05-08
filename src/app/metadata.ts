@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 
 export const neitzenMetadata: Metadata = {
-  metadataBase: new URL('https://neitzen.tech'),
+  metadataBase: new URL('https://www.neitzen.com'),
   title: {
     default: 'Neitzen Technologies',
     template: '%s | Neitzen'
   },
-  description: 'Neitzen is a global technology company specializing in AGI research, high-fidelity data synthesis for model training, and assistive software solutions.',
+  description: 'Networking of Enterprise and Internet Citizens.',
   keywords: [
     'AGI Research', 
     'Assistive Technology', 
@@ -23,10 +23,10 @@ export const neitzenMetadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://neitzen.tech',
+    url: 'https://www.neitzen.com',
     siteName: 'Neitzen',
     title: 'Neitzen | Pioneering Assistive Intelligence & AGI',
-    description: 'Developing the data infrastructure and assistive software leveraging the power of AI and the internet.',
+    description: 'Networking of Enterprise and Internet Citizens.',
     images: [
       {
         url: '/neitzen-og.png', 
@@ -41,7 +41,7 @@ export const neitzenMetadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Neitzen | AGI Research & Assistive AI',
-    description: 'Building assistive technologies and AGI research infrastructure.',
+    description: 'Networking of Enterprise and Internet Citizens.',
     images: ['/neitzen-og.png'],
     //site: '@neitzen_tech', // Update with your actual handle if you have one
   },

@@ -88,7 +88,7 @@ export default function MainLayout({
 
             <Link href="/" className="mr-2 md:mr-6 flex items-center cursor-pointer">
               <span className="font-semibold text-[16px] md:text-[18px] tracking-tight text-[#262626]">
-                Neitzen Inc.
+                NEITZEN
               </span>
             </Link>
 

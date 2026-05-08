@@ -133,9 +133,9 @@ export default function SearchBar() {
       {isOpen && (
         <div className="absolute right-0 mt-2 w-96 bg-white rounded-lg shadow-xl border border-gray-200 z-50 overflow-hidden">
           {/* Search Input */}
-          <div className="p-4 border-b border-gray-200 bg-gray-50">
+          <div className="p-4 border-b border-gray-200 bg-gray-">
             <div className="flex items-center gap-2">
-              <Search size={20} className="text-gray-400" />
+              <Search size={20} className="text-gray-400"/>
               <input
                 ref={inputRef}
                 type="text"

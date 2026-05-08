@@ -219,7 +219,7 @@ export default function SolutionsPage() {
                 <div className="flex flex-wrap gap-2">
                   {sol.tags.map((tag, tIndex) => (
                     <span key={tIndex} className="px-2 py-1 bg-slate-100 text-slate-500 text-xs font-mono rounded">
-                      #{tag}
+                      {tag}
                     </span>
                   ))}
                 </div>

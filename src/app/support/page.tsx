@@ -31,16 +31,16 @@ export default function ContactPage() {
     {
       title: "Technical Support",
       description: "Get help with deployment, API integration, or troubleshooting.",
-      actionText: "support@neitzen.tech",
-      link: "mailto:support@neitzen.tech",
+      actionText: "support@neitzen.com",
+      link: "mailto:support@neitzen.com",
       icon: <Icons.LifeBuoy className="text-blue-600" size={24} />
     },
     {
-      title: "Sales & Partnerships",
+      title: "Partnerships",
       description: "Discuss enterprise licensing, custom builds, and volume pricing.",
       actionText: "Contact Sales",
-      link: "mailto:founder@neitzen.tech",
-      icon: <Icons.MessageSquare className="text-teal-600" size={24} />
+      link: "mailto:cto@neitzen.com",
+      icon: <Icons.Handshake className="text-teal-600" size={24} />
     },
     {
       title: "Documentation",
